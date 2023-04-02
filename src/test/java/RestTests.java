@@ -1,7 +1,5 @@
-import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
@@ -38,7 +36,7 @@ public class RestTests {
             .then()
             .log().status()
             .log().body()
-            .statusCode(202)
+            .statusCode(201)
             .body("name", is("morpheus"))
             .body("job", is("leader"));
   }
@@ -78,7 +76,7 @@ public class RestTests {
 
   @Test
   @DisplayName("Пользователь не найден")
-  void NotFoundTest() {
+  void notFoundTest() {
     given()
             .log().uri()
             .when()
