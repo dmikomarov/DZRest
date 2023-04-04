@@ -4,14 +4,11 @@ import model.RegisterResponseErrorModel;
 import model.UpdateResponseModel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.is;
 import static specs.Specs.*;
 
 public class RestTestsExtended {
@@ -37,7 +34,7 @@ public class RestTestsExtended {
 
   @Test
   @DisplayName("REGISTER - UNSUCCESSFUL - 400 ")
-  void RegisterUnsuccessfulUserTest() {
+  void registerUnsuccessfulUserTest() {
     RegisterBody registerBody = new RegisterBody();
     registerBody.setPassword("pistol");
     RegisterResponseErrorModel registerResponseError =
@@ -47,7 +44,7 @@ public class RestTestsExtended {
                             .when()
                             .post("/register")
                             .then()
-                            .spec(ResponseSpecPsw400)
+                            .spec(responseSpecPsw400)
                             .extract().as(RegisterResponseErrorModel.class));
     step("Verify error", () -> {
       assertThat(registerResponseError.getError()).isEqualTo("Missing email or username");
@@ -73,7 +70,7 @@ public class RestTestsExtended {
             .when()
             .get("/users/23")
             .then()
-            .spec(ResponseSpecPsw404));
+            .spec(responseSpecPsw404));
   }
 
 

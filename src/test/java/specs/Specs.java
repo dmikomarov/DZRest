@@ -21,14 +21,14 @@ public class Specs {
           .contentType(ContentType.JSON);
 
 
-  public static ResponseSpecification ResponseSpecPsw400 = new ResponseSpecBuilder()
+  public static ResponseSpecification responseSpecPsw400 = new ResponseSpecBuilder()
           .log(STATUS)
           .log(BODY)
           .expectStatusCode(400)
           .expectBody("error", notNullValue())
           .build();
 
-  public static ResponseSpecification ResponseSpecPsw404 = new ResponseSpecBuilder()
+  public static ResponseSpecification responseSpecPsw404 = new ResponseSpecBuilder()
           .log(STATUS)
           .log(BODY)
           .expectStatusCode(404)
